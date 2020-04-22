@@ -1,7 +1,7 @@
 var testApp = angular.module("testApp");
 
 
-testApp.controller("editCtrl", function ($scope, $http, $routeParams, $location) {
+testApp.controller("glasanjeCtrl", function ($scope, $http, $routeParams, $location) {
 
 	var porukeUrl = "/api/poruke/" + $routeParams.id;
 	var zgradeUrl = "/api/zgrade";
@@ -13,6 +13,10 @@ testApp.controller("editCtrl", function ($scope, $http, $routeParams, $location)
 	$scope.editEntity.tip = "";
 	$scope.editEntity.opis = "";
 	$scope.editEntity.potrebanProcenat = "";
+
+	$scope.glas = {};
+	$scope.glas.komentar = "";
+	$scope.glas.predlogPodrzan = "";
 
 	$scope.zgradaId = "";
 
@@ -42,13 +46,18 @@ testApp.controller("editCtrl", function ($scope, $http, $routeParams, $location)
 		);
 	}
 
-	$scope.doEdit = function () {
-		$http.put(porukeUrl, $scope.editEntity).then(
+	$scope.doVote = function (za) {
+		if (za) {
+			$scope.glas.predlogPodrzan = "za";
+		} else {
+			$scope.glas.predlogPodrzan = "protiv";
+		}
+		$http.post(porukeUrl, $scope.glas).then(
 			function success() {
 				$location.path("/poruke");
 			},
 			function error() {
-				alert("Neuspešno čuvanje poruke.");
+				alert("Neuspešno glasanje.");
 			}
 		);
 	}

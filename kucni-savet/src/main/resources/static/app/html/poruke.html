@@ -1,0 +1,106 @@
+<div ng-controller="addCtrl">
+	<h1>Poruke</h1>
+
+	<h2>Dodavanje poruke</h2>
+
+	<form>
+		<div class="form-group">
+			<label for="polje1">Naslov</label>
+			<input id="polje1" class="form-control" ng-model="newEntity.naslov" />
+		</div>
+		<div class="form-group">
+			<label for="polje2">Tip</label>
+			<select id="polje2" class="form-control" ng-model="newEntity.tip">
+				<option value="obaveštenje">obaveštenje</option>
+				<option value="predlog">predlog</option>
+			</select>
+
+		</div>
+		<div class="form-group">
+			<label for="polje3">Opis</label>
+			<input id="polje3" class="form-control" ng-model="newEntity.opis" />
+		</div>
+		<div class="form-group" ng-hide="newEntity.tip == 'obaveštenje'">
+			<label for="polje4">Potreban procenat</label>
+			<input id="polje4" class="form-control" ng-model="newEntity.potrebanProcenat" />
+		</div>
+		<div class="form-group">
+			<label for="s1">Zgrada</label>
+			<select id="s1" class="form-control" ng-model="newEntity.zgradaId">
+				<option ng-repeat="e in zgrade" value="{{e.id}}">{{e.adresa}}</option>
+			</select>
+		</div>
+
+		<button class="btn btn-primary" ng-click="doAdd()">Dodaj</button>
+	</form>
+
+	<h2>Filteri pretrage</h2>
+
+	<form>
+		<div class="form-group">
+			<label for="searchPar2">Zgrada</label>
+			<select id="searchPar2" class="form-control" ng-model="searchParams.searchPar1">
+				<option></option>
+				<option ng-repeat="e in zgrade" value="{{e.id}}">{{e.adresa}}</option>
+			</select>
+		</div>
+
+		<div class="form-group">
+			<label for="searchPar1">Naslov</label>
+			<input id="searchPar1" class="form-control" ng-model="searchParams.searchPar2" />
+		</div>
+
+		<div class="form-group">
+			<label for="searchPar3">Tip</label>
+			<select id="searchPar3" class="form-control" ng-model="searchParams.searchPar3">
+				<option></option>
+				<option value="obaveštenje">obaveštenje</option>
+				<option value="predlog">predlog</option>
+			</select>
+		</div>
+
+		<button class="btn btn-primary" ng-click="doSearch()">Pretraži</button>
+	</form>
+
+
+	<div class="btn-group float-right">
+		<div>
+			<select class="form-control" ng-model="rowsPerPage" ng-change="doSearch()">
+				<option ng-repeat="ro in rowOptions" value="{{ro}}" ng-selected="ro == rowsPerPage">{{ro}}</option>
+			</select>
+		</div>
+		<button ng-disabled="pageNum == 0" ng-click="changePage(-1)" class="btn btn-info">Prethodna</button>
+		<button ng-disabled="pageNum >= totalPages - 1" ng-click="changePage(1)" class="btn btn-info">Sledeća</button>
+	</div>
+
+	<br>
+
+	<table class="table table-bordered table-striped">
+		<thead class="thead-dark">
+			<tr>
+				<th>Naslov</th>
+				<th>Tip</th>
+				<th>Opis</th>
+				<th>Potreban %</th>
+				<th>Zgrada</th>
+				<th>Akcije</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr ng-repeat="m in poruke">
+				<td>{{m.naslov}}</td>
+				<td>{{m.tip}}</td>
+				<td>{{m.opis}}</td>
+				<td>{{m.potrebanProcenat}}</td>
+				<td>{{m.zgradaAdresa}}</td>
+				<td>
+					<button class="btn btn-primary" ng-click="doInteract(m.id)"
+						ng-disabled="m.id == null || m.mozeGlasati == false" ng-hide="m.tip == 'obaveštenje'">Glasaj</button>
+					<button class="btn btn-warning" ng-click="goToEdit(m.id)" ng-disabled="m.id == null">Izmeni</button>
+					<button class="btn btn-danger" ng-click="doDelete(m.id)" ng-disabled="m.id == null">Obriši</button>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+
+</div>

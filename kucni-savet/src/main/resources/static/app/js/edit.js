@@ -3,52 +3,52 @@ var testApp = angular.module("testApp");
 
 testApp.controller("editCtrl", function ($scope, $http, $routeParams, $location) {
 
-	var model1sUrl = "/api/model1s/" + $routeParams.id;
-	var model2sUrl = "/api/model2s";
+	var porukeUrl = "/api/poruke/" + $routeParams.id;
+	var zgradeUrl = "/api/zgrade";
 
-	$scope.model2s = [];
+	$scope.zgrade = [];
 
 	$scope.editEntity = {};
-	$scope.editEntity.polj1 = "";
-	$scope.editEntity.polj2 = "";
-	$scope.editEntity.polj3 = "";
-	$scope.editEntity.polj4 = "";
+	$scope.editEntity.naslov = "";
+	$scope.editEntity.tip = "";
+	$scope.editEntity.opis = "";
+	$scope.editEntity.potrebanProcenat = "";
 
-	$scope.model2Id = "";
+	$scope.zgradaId = "";
 
-	var getmodel2s = function () {
-		$http.get(model2sUrl).then(
+	var getzgrade = function () {
+		$http.get(zgradeUrl).then(
 			function success(res) {
-				$scope.model2s = res.data;
+				$scope.zgrade = res.data;
 				getModel1();
 			},
 			function error() {
-				alert("Neuspešno dobavljanje model2s.");
+				alert("Neuspešno dobavljanje zgrade.");
 			}
 		);
 	}
 
-	getmodel2s();
+	getzgrade();
 
 
 	var getModel1 = function () {
-		$http.get(model1sUrl).then(
+		$http.get(porukeUrl).then(
 			function success(res) {
 				$scope.editEntity = res.data;
 			},
 			function error() {
-				alert("Neuspešno dobavljanje model1s.");
+				alert("Neuspešno dobavljanje poruke.");
 			}
 		);
 	}
 
 	$scope.doEdit = function () {
-		$http.put(model1sUrl, $scope.editEntity).then(
+		$http.put(porukeUrl, $scope.editEntity).then(
 			function success() {
-				$location.path("/model1s");
+				$location.path("/poruke");
 			},
 			function error() {
-				alert("Neuspešno čuvanje model1s.");
+				alert("Neuspešno čuvanje poruke.");
 			}
 		);
 	}

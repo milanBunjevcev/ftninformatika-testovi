@@ -1,0 +1,26 @@
+<div ng-controller="glasanjeCtrl">
+	<h1>Glasanje za predlog</h1>
+
+	<form>
+
+		<div class="form-group">
+			<label for="polje1">Naslov</label>
+			<input id="polje1" class="form-control" ng-model="editEntity.naslov" />
+		</div>
+		
+		<div class="form-group">
+			<label for="polje3">Opis</label>
+			<input id="polje3" class="form-control" ng-model="editEntity.opis" />
+		</div>
+		<div class="form-group">
+			<label for="polje4">Komentar</label>
+			<input id="polje4" class="form-control" ng-model="glas.komentar" />
+		</div>
+		
+
+		<button class="btn btn-primary" ng-click="doVote(true)">Za</button>
+		<button class="btn btn-primary" ng-click="doVote(false)">Protiv</button>
+
+	</form>
+
+</div>

@@ -11,11 +11,14 @@ testApp.config(['$routeProvider', function($routeProvider) {
 			templateUrl : '/app/html/home.html',
 			controller: 'homeCtrl'
 		})
-		.when('/model1s', {
-			templateUrl : '/app/html/model1s.html'
+		.when('/poruke', {
+			templateUrl : '/app/html/poruke.html'
 		})
-		.when('/model1s/edit/:id', {
-			templateUrl : '/app/html/edit-model1.html'
+		.when('/poruke/edit/:id', {
+			templateUrl : '/app/html/edit-poruke.html'
+		})
+		.when('/poruke/glasanje/:id', {
+			templateUrl : '/app/html/glasanje.html'
 		})
 		.otherwise({
 			redirectTo: '/'
