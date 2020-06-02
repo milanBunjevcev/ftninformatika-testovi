@@ -1,0 +1,36 @@
+<div ng-controller="editCtrl">
+	<h1>Izmena model1</h1>
+
+	<form>
+
+		<div class="form-group">
+			<label for="polje1">Ime</label>
+			<input id="polje1" class="form-control" ng-model="editEntity.ime" />
+		</div>
+		<div class="form-group">
+			<label for="polje2">Zaduzeni</label>
+			<input id="polje2" class="form-control" ng-model="editEntity.zaduzeni" />
+		</div>
+		<div class="form-group">
+			<label for="polje3">Bodovi</label>
+			<input id="polje3" class="form-control" ng-model="editEntity.bodovi" />
+		</div>
+		
+		<div class="form-group">
+			<label for="s1">Stanje</label>
+			<select id="s1" class="form-control" ng-model="editEntity.stanjeId" ng-disabled="true">
+				<option ng-repeat="e in stanja" value="{{e.id}}" ng-selected="e.id == editEntity.stanjeId">{{e.ime}}</option>
+			</select>
+		</div>
+		<div class="form-group">
+			<label for="s2">Sprint</label>
+			<select id="s2" class="form-control" ng-model="editEntity.sprintId">
+				<option ng-repeat="e in sprintovi" value="{{e.id}}" ng-selected="e.id == editEntity.sprintId">{{e.ime}}</option>
+			</select>
+		</div>
+
+		<button class="btn btn-primary" ng-click="doEdit()">Sačuvaj</button>
+
+	</form>
+
+</div>
