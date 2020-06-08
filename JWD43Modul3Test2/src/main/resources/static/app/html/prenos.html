@@ -1,0 +1,26 @@
+<div ng-controller="prenosCtrl">
+	<h1>Nalog za prenos</h1>
+
+	<form>
+
+		<div class="form-group">
+			<label for="polje1">Broj racuna uplatioca</label>
+			<input id="polje1" class="form-control" ng-model="editEntity.brojRacuna1" />
+		</div>
+		<div class="form-group">
+			<label for="polje2">Broj racuna primaoca</label>
+			<input id="polje2" class="form-control" ng-model="editEntity.brojRacuna2" />
+		</div>		
+		
+		<div class="form-group">
+			<label for="polje4">Iznos</label>
+			<input id="polje4" class="form-control" ng-model="editEntity.iznos" />
+		</div>
+		
+		
+
+		<button class="btn btn-primary" ng-click="doPrenos()">Prenesi</button>
+
+	</form>
+
+</div>

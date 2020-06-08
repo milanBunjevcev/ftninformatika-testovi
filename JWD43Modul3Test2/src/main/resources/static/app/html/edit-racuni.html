@@ -1,0 +1,30 @@
+<div ng-controller="editCtrl">
+	<h1>Izmena racuna</h1>
+
+	<form>
+
+		<div class="form-group">
+			<label for="polje1">Ime i prezime</label>
+			<input id="polje1" class="form-control" ng-model="editEntity.imePrezime" />
+		</div>
+		<div class="form-group">
+			<label for="polje2">JMBG</label>
+			<input id="polje2" class="form-control" ng-model="editEntity.jmbg" />
+		</div>		
+		<div class="form-group">
+			<label for="polje3">Broj racuna</label>
+			<input id="polje3" class="form-control" ng-model="editEntity.brojRacuna" />
+		</div>
+
+		<div class="form-group">
+			<label for="polje4">Stanje racuna</label>
+			<input id="polje4" class="form-control" ng-model="editEntity.stanjeRacuna" />
+		</div>
+		
+		
+
+		<button class="btn btn-primary" ng-click="doEdit()">Sačuvaj</button>
+
+	</form>
+
+</div>
